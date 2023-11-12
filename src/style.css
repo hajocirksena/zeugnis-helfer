@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(31, 9, 92, 0.89), rgba(4, 4, 42, 0.89));
+    background-attachment: fixed;
+    height: 100vh;
+    color: rgb(209 213 219);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #ffffff;
+}
+
+/* Überschriften */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+
+/* Text */
+p {
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Input-Felder */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    color: #333333;
+}
+
+textarea{
+    min-height: 130px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #007BFF;
+}
+
+/* Buttons */
+button, .btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover, .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Container für Formulare */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar a {
+    margin: 0 15px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Weitere Stile nach Bedarf hinzufügen */
