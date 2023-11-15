@@ -1,78 +1,80 @@
 <template>
-  <div class="text-sm w-full mx-4">
-    <div class="grid grid-cols-3 gap-2 my-4">
-      <div class="col-span-1">
-        Schulform:
-        <select class="w-fit" v-model="selectedSchulform">
-          <option
-            :value="option.value"
-            v-for="option in schulform"
-            :key="option.value"
-          >
-            {{ option.label }}
-          </option>
-        </select>
-      </div>
-
-      <div class="col-span-1 w-full">
-        Anrede:
-        <div v-for="option in anrede" :key="option.value">
-          <input
-            type="radio"
-            name="anredeGroup"
-            :id="option.label"
-            :value="option.value"
-            v-model="selectedAnrede"
-          />
-          <label class="mx-2" :for="option.label">{{ option.label }}</label>
+  <Layout>
+    <div class="text-sm w-full">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-2 my-4">
+        <div class="sm:col-span-1">
+          Schulform:
+          <select class="w-fit" v-model="selectedSchulform">
+            <option
+              :value="option.value"
+              v-for="option in schulform"
+              :key="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
         </div>
+
+        <div class="sm:col-span-1 w-full">
+          Anrede:
+          <div v-for="option in anrede" :key="option.value">
+            <input
+              type="radio"
+              name="anredeGroup"
+              :id="option.label"
+              :value="option.value"
+              v-model="selectedAnrede"
+            />
+            <label class="mx-2" :for="option.label">{{ option.label }}</label>
+          </div>
+        </div>
+        <Slider @emittedLength="handleLength" />
       </div>
-      <Slider @emittedLength="handleLength" />
-    </div>
 
-    <div class="w-full grid grid-cols-2 gap-2">
-      <div class="col-span-2">
-        <label class="mr-2">Name der SchülerIn:</label>
-        <input type="text" name="Name" v-model="name" placeholder="Name" />
+      <div class="w-full sm:grid sm:grid-cols-2 sm:gap-2">
+        <div class="sm:col-span-2">
+          <label class="mr-2">Name der SchülerIn:</label>
+          <input type="text" name="Name" v-model="name" placeholder="Name" />
+        </div>
+
+        <TextAreaUi
+          name=" Fachlich/Methodische Stärken"
+          v-model="fachlicheStärken"
+          placeholder="Für ein besseres Ergebnis für dem Fach ein Attribut hinzu (z.B. Deutsch (Rechtschreibung))"
+        />
+        <TextAreaUi
+          name="Fachlich/Methodische Schwächen"
+          v-model="fachlicheSchwächen"
+          placeholder="Für ein besseres Ergebnis für dem Fach ein Attribut hinzu (z.B. Deutsch (Rechtschreibung))"
+        />
+        <TextAreaUi
+          name="Soziale Stärken"
+          v-model="sozialeStärken"
+          placeholder="Auffälig positives im Sozialverhalten"
+        />
+        <TextAreaUi
+          name="Soziale Schwächen"
+          v-model="sozialeSchwächen"
+          placeholder="Auffälig negatives im Sozialverhalten"
+        />
+        <TextAreaUi
+          name="Ämter"
+          v-model="ämter"
+          placeholder="Klassensprecher, Streitschlichter o.Ä. engagement"
+        />
+        <TextAreaUi
+          name="Organisatorisches"
+          v-model="organisatorisches"
+          placeholder="Unentschuldigte Fehlzeiten, Verspätung, Vergessenes Material o.Ä. "
+        />
+
+        <button class="m-4 col-span-2" @click="sendPromptAndReceiveResult()">
+          senden
+        </button>
       </div>
-
-      <TextAreaUi
-        name=" Fachlich/Methodische Stärken"
-        v-model="fachlicheStärken"
-        placeholder="Für ein besseres Ergebnis für dem Fach ein Attribut hinzu (z.B. Deutsch (Rechtschreibung))"
-      />
-      <TextAreaUi
-        name="Fachlich/Methodische Schwächen"
-        v-model="fachlicheSchwächen"
-        placeholder="Für ein besseres Ergebnis für dem Fach ein Attribut hinzu (z.B. Deutsch (Rechtschreibung))"
-      />
-      <TextAreaUi
-        name="Soziale Stärken"
-        v-model="sozialeStärken"
-        placeholder="Auffälig positives im Sozialverhalten"
-      />
-      <TextAreaUi
-        name="Soziale Schwächen"
-        v-model="sozialeSchwächen"
-        placeholder="Auffälig negatives im Sozialverhalten"
-      />
-      <TextAreaUi
-        name="Ämter"
-        v-model="ämter"
-        placeholder="Klassensprecher, Streitschlichter o.Ä. engagement"
-      />
-      <TextAreaUi
-        name="Organisatorisches"
-        v-model="organisatorisches"
-        placeholder="Unentschuldigte Fehlzeiten, Verspätung, Vergessenes Material o.Ä. "
-      />
-
-      <button class="m-4 col-span-2" @click="sendPromptAndReceiveResult()">
-        senden
-      </button>
     </div>
-  </div>
-  <Loading v-if="loading">loading...</Loading>
+  </Layout>
+  <Loading v-if="loading" :studentName="name">loading...</Loading>
   <ResultOverlay
     @close-overlay="result = ''"
     :result="result"
@@ -88,6 +90,7 @@ import TextAreaUi from "@/components/TextAreaUi.vue";
 import Slider from "@/components/Slider.vue";
 import ResultOverlay from "@/components/ResultOverlay.vue";
 import Loading from "@/components/Loading.vue";
+import Layout from "@/components/Layout.vue";
 
 const name = ref("");
 const fachlicheStärken = ref("");

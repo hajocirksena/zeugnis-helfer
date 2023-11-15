@@ -1,7 +1,19 @@
 <template>
-  <div class="bg-indigo-500 w-full p-4 flex justify-between">
-    This could become the header
-    <button v-if="isLoggedIn" @click="logout">Logout</button>
+  <div class="bg-indigo-500 w-full p-4 flex justify-between h-16">
+    header
+    <div class="flex items-end">
+      <div>
+        <router-link class="mr-4 text-gray-300" to="/views/form"
+          >Helferlein</router-link
+        >
+      </div>
+      <div>
+        <router-link class="text-gray-300 mr-4" to="/views/results"
+          >Results</router-link
+        >
+      </div>
+      <button v-if="isLoggedIn" @click="logout">Logout</button>
+    </div>
   </div>
 </template>
 <script setup>

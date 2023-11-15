@@ -1,9 +1,8 @@
 <template>
-  <div class="m-2 col-span-1">
+  <div class="my-6 md:my-2 col-span-1">
     Anzahl der Wörter (ca.):
     <div>
       <input
-        class="w-full"
         type="range"
         min="10"
         max="400"

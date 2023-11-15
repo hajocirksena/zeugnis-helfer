@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-4 sm:my-0">
     <label class="block text-sm font-medium">{{ name }}:</label>
     <textarea
       :name="name"

@@ -1,4 +1,5 @@
 <template>
+  <Layout>
   <div>
     <h1>Schülerbeurteilungen:</h1>
     <ul>
@@ -8,10 +9,12 @@
       </li>
     </ul>
   </div>
+  </Layout>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
 import useFirebase from "@/composables/useFirebase";
+import Layout from "@/components/Layout.vue";
 
 const { getFromFirebase } = useFirebase();
 const subCollectionData = ref([]);

@@ -9,7 +9,7 @@
       Mit Google anmelden
     </button>
     <div>
-      Noch kein Account? Hier <a href="/views/sign-up">registrieren</a>.
+      Noch keinen Account? Hier <a href="/views/sign-up">registrieren</a>.
     </div>
   </div>
 </template>
